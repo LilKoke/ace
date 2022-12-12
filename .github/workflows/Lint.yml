@@ -1,0 +1,30 @@
+name: Lint
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  flake8:
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+    runs-on: ubuntu-latest
+    name: flake8
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: py-actions/flake8@v2
+
+  black:
+    runs-on: ubuntu-latest
+    name: black
+    steps:
+      - uses: actions/checkout@v2
+      - uses: psf/black@stable
+        with:
+          options: "-l 79"
