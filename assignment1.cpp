@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -44,8 +45,10 @@ int main(){
     double omega_runge[4], q_runge[4];
     double t = 0;
     ofstream writing_file1, writing_file2;
-    string filename_omega = "out/omega.csv";
-    string filename_q = "out/q.csv";
+    string folder_name = "out/assignment1";
+    mkdir(folder_name.c_str(), 0777);
+    string filename_omega = "out/assignment1/omega.csv";
+    string filename_q = "out/assignment1/q.csv";
     writing_file1.open(filename_omega, ios::out);
     writing_file2.open(filename_q, ios::out);
     writing_file1 << "t" << " " << "omega1" << " " << "omega2" << " " << "omega3" << endl;
