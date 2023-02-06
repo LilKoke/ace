@@ -35,7 +35,7 @@ int main(){
     calculate_dq(q, omega, dq);
     update_q(q, dq, dt);
     assert(q[0] + q[1] + q[2] + q[3] - 1 < 1e-10);
-    assert(q[0] == 1 / 1.2);
+    assert(q[0] == 1 / 1.1);
     assert(q[1] == 0.1 / 1.1);
     cout << "unit_test.cpp: " << "PASSED" << endl;
     return 0;
