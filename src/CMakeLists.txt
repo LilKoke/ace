@@ -1,0 +1,1 @@
+add_library(LinAlg lin_alg.cpp)
