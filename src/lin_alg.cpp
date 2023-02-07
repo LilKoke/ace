@@ -58,6 +58,14 @@ std::vector<std::vector<double> > LinAlg::T(std::vector<std::vector<double> > A)
     return AT;
 }
 
+std::vector<std::vector<double> > LinAlg::T(std::vector<double> x){
+    std::vector<std::vector<double> > xT(x.size());
+    for(int i = 0; i < x.size(); i++){
+        xT[i].push_back(x[i]);
+    }
+    return xT;
+}
+
 std::vector<std::vector<double> > LinAlg::add(std::vector<std::vector<double> > A, std::vector<std::vector<double> > B){
     std::vector<std::vector<double> > sumAB(A.size());
     for(int i = 0; i < A.size(); i++){
@@ -76,6 +84,12 @@ std::vector<double> LinAlg::add(std::vector<double> x, std::vector<double> y){
     return sumxy;
 }
 
+std::vector<double> LinAlg::mult(double a, std::vector<double> x){
+    std::vector<double> multax(x.size());
+    for(int i = 0; i < x.size(); i++) multax[i] = x[i] * a;
+    return multax;
+}
+
 std::vector<std::vector<double> > LinAlg::mult(double a, std::vector<std::vector<double> > A){
     std::vector<std::vector<double> > multaA(A.size());
     for(int i = 0; i < A.size(); i++){
@@ -84,4 +98,24 @@ std::vector<std::vector<double> > LinAlg::mult(double a, std::vector<std::vector
         }
     }
     return multaA;
+}
+
+std::vector<double> LinAlg::qdot(std::vector<double> p, std::vector<double> q){
+    std::vector<double> pqdotq;
+    assert(p.size() == 4);
+    assert(q.size() == 4);
+    pqdotq = {
+        {p[0]*q[0] - p[1]*q[1] - p[2]*q[2] - p[3]*q[3]},
+        {p[0]*q[1] + p[1]*q[0] + p[2]*q[3] - p[3]*q[2]},
+        {p[0]*q[2] - p[1]*q[3] + p[2]*q[0] + p[3]*q[1]},
+        {p[0]*q[3] + p[1]*q[2] - p[2]*q[1] + p[3]*q[0]}
+    };
+    return pqdotq;
+}
+
+std::vector<double> LinAlg::squeeze(std::vector<std::vector<double> > A){
+    std::vector<double> x(A.size());
+    assert(A[0].size() == 1);
+    for(int i = 0; i < A.size(); i++) x[i] = A[i][0];
+    return x;
 }
