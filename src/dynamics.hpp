@@ -10,6 +10,7 @@ class Dynamics
     ~Dynamics();
     std::vector<double> calculate_domega(std::vector<double> omega, std::vector<double> M, std::vector<double> Iner);
     std::vector<double> calculate_dq(LinAlg la, std::vector<double> q, std::vector<double> omega);
+    std::vector<double> normalize_q(LinAlg la, std::vector<double> q);
 };
 
 #endif
