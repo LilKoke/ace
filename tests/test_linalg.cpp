@@ -26,5 +26,14 @@ int main(){
     vector<vector<double> > kA = la.mult(k, A);
     cout << kA[0][0] << " " << kA[0][1] << endl;
     cout << kA[1][0] << " " << kA[1][1] << endl;
+    vector<double> sx = la.squeeze(x);
+    cout << sx[0] << sx[1] << endl;
+    vector<double> q = {1, 0, 0, 0};
+    vector<double> omega = {0, 0.2, 0, 0};
+    vector<double> dq = la.mult(0.5, la.qdot(q, omega));
+    assert(dq[1] == 0.1);
+    double h = 0.1;
+    vector<double> dq2 = la.mult(0.5*h, la.qdot(q, omega));
+    cout << dq2[0] << " " << dq2[1] << " " << dq2[2] << " " << dq2[3] << endl;
     return 0;
 }
