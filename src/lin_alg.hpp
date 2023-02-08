@@ -17,6 +17,7 @@ class LinAlg
     std::vector<std::vector<double> > mult(double a, std::vector<std::vector<double> > A);
     std::vector<double> qdot(std::vector<double> p, std::vector<double> q);
     std::vector<double> squeeze(std::vector<std::vector<double> > A);
+    std::vector<std::vector<double> > I(int n);
 };
 
 #endif

@@ -15,7 +15,7 @@ std::vector<std::vector<double> > LinAlg::dot(std::vector<std::vector<double> > 
             for(int k = 0; k < A[0].size(); k++){
                 sum += A[i][k] * B[k][j];
             }
-            AdotB[i].push_back(sum);
+            AdotB[i].push_back(sum);    
         }
     }
     return AdotB;
@@ -118,4 +118,15 @@ std::vector<double> LinAlg::squeeze(std::vector<std::vector<double> > A){
     assert(A[0].size() == 1);
     for(int i = 0; i < A.size(); i++) x[i] = A[i][0];
     return x;
+}
+
+std::vector<std::vector<double> > LinAlg::I(int n){
+    std::vector<std::vector<double> > Im(n);
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            if(i == j) Im[i].push_back(1.0);
+            else Im[i].push_back(0.0);
+        }       
+    }
+    return Im;
 }

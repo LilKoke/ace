@@ -23,4 +23,14 @@ std::vector<double> Dynamics::calculate_dq(LinAlg la, std::vector<double> q, std
     return dq;
 }
 
+std::vector<double> Dynamics::normalize_q(LinAlg la, std::vector<double> q){
+    double q_norm = 0;
+    for(int i = 0; i < q.size(); i++){
+        q_norm += q[i] * q[i];
+    }
+    double div = 1 / sqrt(q_norm);
+    q = la.mult(div, q);
+    return q;
+}
+
 
