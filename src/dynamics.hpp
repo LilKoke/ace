@@ -5,7 +5,7 @@
 
 class Dynamics
 {
-    public:
+public:
     Dynamics();
     ~Dynamics();
     std::vector<double> calculate_domega(std::vector<double> omega, std::vector<double> M, std::vector<double> Iner);
