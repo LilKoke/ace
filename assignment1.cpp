@@ -10,7 +10,8 @@ Dynamics d;
 
 #define PI 3.1415
 
-int main(){
+int main()
+{
     vector<double> q = {1, 0, 0, 0};
     vector<double> dq;
     double omega_s = 17 * 2 * PI / 60;
@@ -32,12 +33,28 @@ int main(){
     string filename_q = "out/assignment1/q.csv";
     writing_file1.open(filename_omega, ios::out);
     writing_file2.open(filename_q, ios::out);
-    writing_file1 << "t" << " " << "omega1" << " " << "omega2" << " " << "omega3" << endl;
-    writing_file2 << "t" << " " << "q0" << " " << "q1" << " " << "q2" << " " << "q3" << endl;
-    while(t <= tn){
-        writing_file1 << t << " " << omega[1] << " " << omega[2] << " " << omega[3] << endl;        
+    writing_file1 << "t"
+                  << " "
+                  << "omega1"
+                  << " "
+                  << "omega2"
+                  << " "
+                  << "omega3" << endl;
+    writing_file2 << "t"
+                  << " "
+                  << "q0"
+                  << " "
+                  << "q1"
+                  << " "
+                  << "q2"
+                  << " "
+                  << "q3" << endl;
+    while (t <= tn)
+    {
+        writing_file1 << t << " " << omega[1] << " " << omega[2] << " " << omega[3] << endl;
         writing_file2 << t << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
-        for(int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++)
+        {
             omega_runge[i] = omega[i];
             q_runge[i] = q[i];
         }
@@ -67,9 +84,10 @@ int main(){
         k4_omega = la.mult(h, domega);
         k4_q = la.mult(h, dq);
 
-        for(int i = 0; i < 4; i++){
-            omega[i] += (k1_omega[i] + 2 * k2_omega[i] + 2 * k3_omega[i] + k4_omega[i])/6.0;
-            q[i] += (k1_q[i] + (2 * k2_q[i]) + (2 * k3_q[i]) + k4_q[i])/6.0;
+        for (int i = 0; i < 4; i++)
+        {
+            omega[i] += (k1_omega[i] + 2 * k2_omega[i] + 2 * k3_omega[i] + k4_omega[i]) / 6.0;
+            q[i] += (k1_q[i] + (2 * k2_q[i]) + (2 * k3_q[i]) + k4_q[i]) / 6.0;
         }
         q = d.normalize_q(la, q);
         t += h;
