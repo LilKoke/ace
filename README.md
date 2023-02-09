@@ -1,4 +1,4 @@
-# ACE
+# 宇宙機制御工学課題
 <p align="center">
 <img src="output.png"/>
 </p>
